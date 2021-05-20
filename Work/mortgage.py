@@ -20,5 +20,10 @@ while principal > 0:
         total_paid = total_paid + payment
     print month, round(principal,2),round(total_paid,2)
     month+=1
-print('Total paid', round(total_paid,2))
-print('Months',month)
+    if principal<0:
+        overpayment=principal
+       # print overpayment
+
+print('overpayment is', round(overpayment,2))
+print ('total paid is therefore', round(total_paid-overpayment,2))
+print('Month', month)
