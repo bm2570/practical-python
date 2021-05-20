@@ -18,12 +18,14 @@ while principal > 0:
     else:
         principal = principal * (1+rate/12) - payment
         total_paid = total_paid + payment
-    print month, round(principal,2),round(total_paid,2)
+    print (month, round(principal,2),round(total_paid,2))
     month+=1
     if principal<0:
         overpayment=principal
        # print overpayment
 
-print('overpayment is', round(overpayment,2))
-print ('total paid is therefore', round(total_paid-overpayment,2))
-print('Month', month)
+print(f"overpayment is {overpayment:0.2f}")
+newpayment=total_paid-overpayment
+print(f"total paid is therefore {newpayment:0.2f}")
+print(f"Month: {month}")
+
