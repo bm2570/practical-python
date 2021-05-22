@@ -2,6 +2,7 @@
 #
 # Exercise 1.27
 import csv
+import sys
 def portfolio_cost(filename):
     f = open(filename, 'rt')
     headers = next(f)
@@ -17,6 +18,7 @@ def portfolio_cost(filename):
             print("error in cost calculation")
     return cost
 
-cost = portfolio_cost('Data/portfolio.csv')#, 'rt')
+filename=sys.argv[1]
+cost = portfolio_cost(filename)#, 'rt')
 print(f"Total cost: {cost}")
 
