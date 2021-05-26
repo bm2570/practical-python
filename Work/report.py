@@ -69,3 +69,11 @@ print(f"current worth: {round(cost_price-cost_portfolio,2)}")
 # for i in range(len(name2)):
     # print (name2[i])
 
+	
+headers = ('Name', 'Shares', 'Price', 'Change')
+print('%10s %10s %8s %8s' % headers)
+print(('-' * 10 + ' ') * len(headers))
+for row in name1:
+    print (f"\t{row['name']}\t{row['shares']}\t  {row['price']}\t  {round(row['price']-name2[row['name']],2)}")
+
+	
