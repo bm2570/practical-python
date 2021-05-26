@@ -12,8 +12,9 @@ def read_portfolio(filename1,rt):
         headers = next(rows)
 
         for row in rows:
-            info = { 'name':row[0],'shares':int(row[1]),'price':float(row[2]) }
-            portfolio.append((info))
+			record=dict(zip(headers,row))
+            info = { 'name':record['name'],'shares':int(record['shares']),'price':float(record['price']) }
+            portfolio.append(info)
 
     return portfolio
  
