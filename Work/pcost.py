@@ -29,3 +29,4 @@ filename=sys.argv[1]
 cost = portfolio_cost(filename)#, 'rt')
 print(f"Total cost: {cost}")
 
+

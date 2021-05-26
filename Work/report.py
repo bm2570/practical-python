@@ -5,23 +5,23 @@
 import csv
 import sys
 import numpy as np
-def read_portfolio(filename1,rt):
+def read_portfolio(filename):
     portfolio = []
-    with open(filename1) as f:
+    with open(filename,'rt') as f:
         rows = csv.reader(f)
         headers = next(rows)
 
         for row in rows:
 			record=dict(zip(headers,row))
             info = { 'name':record['name'],'shares':int(record['shares']),'price':float(record['price']) }
-            portfolio.append(info)
+            portfolio.append((info))
 
     return portfolio
  
-def read_prices(filename2):
+def read_prices(filename):
 
     prices = {}
-    with open(filename2) as f:
+    with open(filename,'rt') as f:
         rows = csv.reader(f)
         for row in rows:
             try:
@@ -31,9 +31,9 @@ def read_prices(filename2):
 
     return prices 
  
-# def read_prices(filename2):
+# def read_prices(filename):
     # prices=[]
-    # with open(filename2) as f:
+    # with open(filename) as f:
         # rows = csv.reader(f)
         # for row in rows:
 
@@ -41,14 +41,14 @@ def read_prices(filename2):
 
     # return prices
 
-filename1=sys.argv[1]
-name1 = read_portfolio(filename1,'rt')
+filename=sys.argv[1]
+name1 = read_portfolio(filename,'rt')
 
 # for i in range(len(name1)):
     # print (name1[i])
 	
-filename2=sys.argv[2]
-name2=read_prices(filename2)
+filename=sys.argv[2]
+name2=read_prices(filename)
 
 
 cost_portfolio=0.0
