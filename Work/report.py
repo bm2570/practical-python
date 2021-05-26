@@ -68,7 +68,7 @@ print(f"current worth: {round(cost_price-cost_portfolio,2)}")
 		# print name[i]
 # for i in range(len(name2)):
     # print (name2[i])
-
+#
 	
 headers = ('Name', 'Shares', 'Price', 'Change')
 print('%10s %10s %8s %8s' % headers)
