@@ -30,16 +30,6 @@ def read_prices(filename2):
 
     return prices 
 
-
-filename1=sys.argv[1]
-name1 = read_portfolio(filename1,'rt')
-
-	
-filename2=sys.argv[2]
-name2=read_prices(filename2)
-
-
-
 def print_report(reportdata):
     headers = ('Name','Shares','Price','Change')
     print('%10s %10s %8s %8s' % headers)
@@ -47,17 +37,30 @@ def print_report(reportdata):
     for row in reportdata:
         print(f"\t{row['name']}\t{row['shares']}\t  {row['price']}\t  {round(row['price']-name2[row['name']],2)}")
 
+		
+def portfolio_report(portfolio_filename,prices_filename):
+	cost_portfolio=0.0
+	for i in name1:
+		cost_portfolio=cost_portfolio+i['shares']*i['price']
+	print(f"amount originally paid: {cost_portfolio}")
+
+	cost_price=0.0
+	for i in name1:
+		cost_price=cost_price+i['shares']*name2[i['name']]
+	print(f"value currently: {cost_price}")
+	print(f"current worth: {round(cost_price-cost_portfolio,2)}")
+	
+	
+filename1=sys.argv[1]
+filename2=sys.argv[2]
+
+name1 = read_portfolio(filename1,'rt')
+name2=read_prices(filename2)
+		
+		
 print_report(name1)
+portfolio_report(name1,name2)
 
-cost_portfolio=0.0
-for i in name1:
-    cost_portfolio=cost_portfolio+i['shares']*i['price']
-print(f"amount originally paid: {cost_portfolio}")
 
-cost_price=0.0
-for i in name1:
-    cost_price=cost_price+i['shares']*name2[i['name']]
-print(f"value currently: {cost_price}")
-print(f"current worth: {round(cost_price-cost_portfolio,2)}")
 
 	
