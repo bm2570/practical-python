@@ -5,7 +5,7 @@
 import csv
 import sys
 
-def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','):
+def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=',',silence_errors=True):
 
     with open(filename) as f:
         rows = csv.reader(f)
@@ -40,7 +40,8 @@ def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','
                     record=tuple(row)
                 records.append(record)
         except ValueError:
-            print("Error: missing, dirty, or corrupt data")
+            if silence_errors==False:
+                print("Error: missing, dirty, or corrupt data")
             #record = dict(zip(headers, row))
             #records.append(record)
 
