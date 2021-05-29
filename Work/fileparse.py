@@ -21,26 +21,28 @@ def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','
             indices = []
 
         records = []
+        try:
+            for row in rows:
 		
-        for row in rows:
-		
-            if not row:   
-                continue
+                if not row:   
+                    continue
 
-            if select:
-                row = [row[index] for index in indices]
+                if select:
+                    row = [row[index] for index in indices]
 				
-            if types:
-                row=[func(val) for func, val in zip(types,row)]
+                if types:
+                    row=[func(val) for func, val in zip(types,row)]
 	
-            if headers:
-                record=dict(zip(headers,row))
+                if headers:
+                    record=dict(zip(headers,row))
 			
-            else:
-                record=tuple(row)
-		            
+                else:
+                    record=tuple(row)
+                records.append(record)
+        except ValueError:
+            print("Error: missing, dirty, or corrupt data")
             #record = dict(zip(headers, row))
-            records.append(record)
+            #records.append(record)
 
     return records
 
