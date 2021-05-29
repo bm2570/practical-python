@@ -5,30 +5,31 @@
 import csv
 import sys
 import numpy as np
+from fileparse import parse_csv
 def read_portfolio(filename1,rt):
-    portfolio = []
-    with open(filename1) as f:
-        rows = csv.reader(f)
-        headers = next(rows)
+    # portfolio = []
+    # with open(filename1) as f:
+        # rows = csv.reader(f)
+        # headers = next(rows)
 
-        for row in rows:
-            info = { 'name':row[0],'shares':int(row[1]),'price':float(row[2]) }
-            portfolio.append((info))
+        # for row in rows:
+            # info = { 'name':row[0],'shares':int(row[1]),'price':float(row[2]) }
+            # portfolio.append((info))
 
-    return portfolio
+    return parse_csv(filename1, select=['name','shares','price'], types=[str,int,float])
  
 def read_prices(filename2):
 
-    prices = {}
-    with open(filename2) as f:
-        rows = csv.reader(f)
-        for row in rows:
-            try:
-                prices[row[0]] = float(row[1])
-            except IndexError:
-                pass
+    # prices = {}
+    # with open(filename2) as f:
+        # rows = csv.reader(f)
+        # for row in rows:
+            # try:
+                # prices[row[0]] = float(row[1])
+            # except IndexError:
+                # pass
 
-    return prices 
+    return dict(parse_csv(filename2,types=[str,float], has_headers=False)) 
 
 def print_report(reportdata):
     headers = ('Name','Shares','Price','Change')
